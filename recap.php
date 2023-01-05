@@ -14,8 +14,6 @@ session_start();// start session
 </head>
 <body>
 
-    <!-- comment whats a session ans superglobal !!!!!! -->
-
     <?php 
     var_dump($_SESSION);
     // if there is no products in the session than write

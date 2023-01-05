@@ -6,9 +6,12 @@
     <title>Ajout produit</title>
 </head>
 <body>
-    
+
+ <!-- une session contient les données stockées dans la session utilisateur côté serveur (si cette session a été demarrée au préalable) -->
+ <!-- les superglobales sont des variables qui sont disponibles dans n'importe quel script php -->
+
     <h1>Ajouter un produit</h1>
-    <form action="traitement.php">
+    <form action="traitement.php" method="post">
         <p>
             <label>Nom du produit :
                 <input type="text" name="name">
@@ -30,6 +33,5 @@
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
-
 </body>
 </html>
