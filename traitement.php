@@ -7,9 +7,9 @@ if(isset($_POST['submit'])){
 
     // filter the value that is received
     // counter the risk for errors or hacks 
-    $name = filter_input(INPUT_POST, "name" , FILTER_SANITIZE_STRING);
-    $price = filter_input(INPUT_POST, "price" , FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $qtt = filter_input(INPUT_POST, "qtt" , FILTER_VALIDATE_INT);
+    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_STRING);
+    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
     // see if the filters works
     // those variables are supposed to hold the values that was submited or erased in the form 
