@@ -53,8 +53,13 @@ if(isset($_GET['action'])){
             }
         break;
 
-        // augmenter la quantite
+        // increase quantity
+        case"augmenterProduit":
+            if(isset($_GET['id']) &&($_SESSION['product'][$_GET['id']])){
+                $_GET['qtt']++;
+            }
 
+        break;
 
         // baiser la quantite (si 0 alors supprimer le product)
     }

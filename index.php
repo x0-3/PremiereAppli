@@ -36,7 +36,7 @@
     </form>
 
     <button>
-    <a href="recap.php" style="text-decoration: none; color:black">recap</a>
+    <a href="recap.php" style="text-decoration: none;">recap</a>
     </button>
 </body>
 </html>
