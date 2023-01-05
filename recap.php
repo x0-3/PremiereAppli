@@ -55,7 +55,7 @@ session_start();// start session
             "</table>";
     }
     ?> 
-    <a href="traitement.php?action=viderPanier">vider panier</a>
-    <a href="index.php">index</a>
+    <button><a href="traitement.php?action=viderPanier" style="text-decoration: none; color:black">clear</a></button>
+    <button><a href="index.php" style="text-decoration: none; color:black">index</a></button>
 </body>
 </html>

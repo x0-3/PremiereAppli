@@ -39,20 +39,23 @@ if(isset($_GET['action'])){
         case"viderPanier":
             unset($_SESSION["products"]);
             header("Location:index.php");
-            die();// arrete de lire le script fonction native
+            die();// stop reading the script native function
         break;
         
+        // delete one product from the table
         case"supprimerProduit":
-            // si j'ai le mot clé id dans l'url et que j'ai un produit dans mon tableau qui correspond a cette id
+            // if I have the keyword 'id' in the URL and that I have the product that has this id in my table
             if(isset($_GET['id']) && isset($_SESSION['products'][$_GET['id']])){
                 // $produit = $_SESSION['products'][$_GET['id']];
                 unset($_SESSION['products'][$_GET['id']]);
                 header("Location:index.php");
-                die();// arrete de lire le script fonction native
+                die();// stop reading the script native function
             }
         break;
 
         // augmenter la quantite
+
+
         // baiser la quantite (si 0 alors supprimer le product)
     }
 }

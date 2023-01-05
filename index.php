@@ -11,6 +11,7 @@
  <!-- les superglobales sont des variables qui sont disponibles dans n'importe quel script php -->
 
     <h1>Ajouter un produit</h1>
+
     <form action="traitement.php?action=ajouter" method="post">
         <p>
             <label>Nom du produit :
@@ -33,6 +34,9 @@
             <input type="submit" name="submit" value="Ajouter le produit">
         </p>
     </form>
-    <a href="recap.php">recap</a>
+
+    <button>
+    <a href="recap.php" style="text-decoration: none; color:black">recap</a>
+    </button>
 </body>
 </html>
