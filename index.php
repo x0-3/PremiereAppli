@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout produit</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -31,12 +32,12 @@
             </label>
         </p>
         <p>
-            <input type="submit" name="submit" value="Ajouter le produit">
+            <input type="submit" id="submitButton" name="submit" value="Ajouter le produit">
         </p>
     </form>
 
     <button>
-    <a href="recap.php" style="text-decoration: none;">recap</a>
+    <a href="recap.php">recap</a>
     </button>
 </body>
 </html>

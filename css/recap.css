@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ************************************************ tittle section ***************************************************************** */
+h1{
+    margin: 20px;
+}
+
+/* ************************************************ table section ******************************************************************* */
+table{
+    width: 100%;
+}
+
+td,th{
+    border-bottom: 1px solid #ddd;   padding: 15px;
+    text-align: center;
+}
+
+
+/* ********************************************* buttons *************************************************************************** */
+button{
+    margin: 5px;
+    background-color: #9A2D23;
+    padding: 7px 20px;
+    border: none;
+    padding: 7px 20px;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}

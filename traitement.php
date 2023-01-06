@@ -55,7 +55,7 @@ if(isset($_GET['action'])){
 
         // increase quantity
         case"augmenterProduit":
-            if(isset($_GET['id']) &&($_SESSION['product'][$_GET['id']])){
+            if(isset($_GET['id']) &&($_SESSION['product'][$_GET['qtt']])){
                 $_GET['qtt']++;
             }
 

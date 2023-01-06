@@ -11,17 +11,10 @@ session_start();// start session
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Récapitulatif des produits</title>
-    <style>
-        table{
-            width: 100%;
-        }
-        table,td,th{
-           border : 1px solid black; 
-        }
-        
-    </style>
+    <link rel="stylesheet" href="css/recap.css">
 </head>
 <body>
+    <h1>Panier</h1>
 
     <?php 
     // if there is no products in the session than write
@@ -52,8 +45,8 @@ session_start();// start session
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td>".$product['qtt']."</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td><a href = 'traitement.php?action=augmenterProduit&id=$index'>+</a></td>",// add product
-                    "<td><a href ='traitement.php?action=supprimerProduit&id=$index'>&times;</i></a></td>",// clear button
+                    "<td id='add'><button><a href = 'traitement.php?action=augmenterProduit&id=$index'>+</a></button></td>",// add product
+                    "<td id='clear'><button><a href ='traitement.php?action=supprimerProduit&id=$index'>suprimer</a></button></td>",// clear button
                 "</tr>";
             $totalGeneral+=$product['total'];// add product total to the general total
         }
@@ -65,7 +58,7 @@ session_start();// start session
             "</table>";
     }
     ?> 
-    <button style="margin: 5px"><a href="traitement.php?action=viderPanier" style="text-decoration: none;">clear</a></button>
-    <button><a href="index.php" style="text-decoration: none;">index</a></button>
+    <button><a href="traitement.php?action=viderPanier">clear</a></button>
+    <button><a href="index.php">index</a></button>
 </body>
 </html>
