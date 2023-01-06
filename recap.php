@@ -45,8 +45,9 @@ session_start();// start session
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td>".$product['qtt']."</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    "<td><a href = 'traitement.php?action=augmenterProduit&id=$index'><button>+</button></a></td>",// add product
-                    "<td><a href ='traitement.php?action=supprimerProduit&id=$index'><button>suprimer</button></a></td>",// clear button
+                    "<td><a href = 'traitement.php?action=enleverProduit&id=$index'><button>-</button></a></td>",// decrease product by one
+                    "<td><a href = 'traitement.php?action=augmenterProduit&id=$index'><button>+</button></a></td>",// increase product by one
+                    "<td><a href = 'traitement.php?action=supprimerProduit&id=$index'><button>suprimer</button></a></td>",// clear button
                 "</tr>";
             $totalGeneral+=$product['total'];// add product total to the general total
         }

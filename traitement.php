@@ -55,13 +55,28 @@ if(isset($_GET['action'])){
 
         // increase quantity
         case"augmenterProduit":
-            if(isset($_GET['id']) &&($_SESSION['product'][$_GET['qtt']])){
-                $_GET['qtt']++;
+            // if I have the keyword 'id in the url and taht I have the product id then retrieve the quantity that is present in the id with a $_GET
+            if(isset($_GET['id']) &&($_SESSION['products'][$_GET['id']])){
+               $_SESSION['products'][$_GET['id']]['qtt']++;// increament the quantity that is in the id
+               header("Location:index.php");// redirect user to this URL
+                die();
             }
-
         break;
 
-        // baiser la quantite (si 0 alors supprimer le product)
+        // decrease quantity
+        case"enleverProduit":
+            if(isset($_GET['id']) && ($_SESSION['products'][$_GET['id']])){
+                $_SESSION['products'][$_GET['id']]['qtt']--;// retrieve the quantity that is in the id with a $_GET and decreament it
+                header("Location:index.php");// redirect user to this URL
+
+                // if quantity = 0 then delete the product
+                if($_SESSION['products'][$_GET['id']]['qtt'] == 0){
+                    unset ($_SESSION['products'][$_GET['id']]);
+                    header("Location:index.php");// redirect user to this URL
+                }
+                die();
+            }
+        break;
     }
 }
 
