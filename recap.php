@@ -1,7 +1,5 @@
 <?php
 
-//* we do a session_start because we will need to go 
-// thru the array
 session_start();// start session
 ?>
 

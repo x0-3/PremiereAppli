@@ -66,6 +66,7 @@ if(isset($_GET['action'])){
         // decrease quantity
         case"enleverProduit":
             if(isset($_GET['id']) && ($_SESSION['products'][$_GET['id']])){
+                // in order to get the quantity you need to write the path that allows to get to it 
                 $_SESSION['products'][$_GET['id']]['qtt']--;// retrieve the quantity that is in the id with a $_GET and decreament it
                 header("Location:index.php");// redirect user to this URL
 
