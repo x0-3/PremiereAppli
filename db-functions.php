@@ -27,20 +27,42 @@ function findAll(){
     $request = $db->prepare($sql); // on indique quelle requete on va envoyer
     $request->execute(); // on envoie la resquete 
 
-    $prosucts = $request->fetchAll(); // on stock le resultat dans un variable, on précise all s'il y a plueisurs résultats attendus
-    // var_dump($result);
+    $products = $request->fetchAll(); // on stock le resultat dans un variable, on précise all s'il y a plueisurs résultats attendus
 
-    foreach($prosucts as $product){
+    foreach($products as $product){
         ?>
         <br>
-        <a href="#"><?php echo $product['name']; ?></a>
+        <a href="product.php"><?php echo $product['name']; ?></a>
         <p><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
         <p><?php echo $product['price']; ?> €</p>
         <a href="#">Ajouter au panier</a>
         <br>
-
+    
         <?php
     }
+}
 
+function  findOneById($id) {
+    $db = connection();
+
+    $sql = "select * from product where id = :id";
+    $request = $db->prepare($sql);
+    $request->execute(array('id'=>$id));
+
+    $products = $request->fetchAll();
+    // var_dump($products);
+
+    foreach($products as $product){
+        ?>
+        <br>
+        <a href="index.php">Retour</a>
+        <p><?php echo $product['name']; ?></p>
+        <p><?php echo $product['description']; ?></p>
+        <p><?php echo $product['price']; ?> €</p>
+        <a href="#">Ajouter au panier</a>
+        <br>
+    
+        <?php
+    }
 
 }

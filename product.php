@@ -2,6 +2,4 @@
 
 require("db-functions.php");
 
-findAll();
-
-
+findOneById(2);
