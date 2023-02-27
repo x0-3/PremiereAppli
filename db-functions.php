@@ -23,7 +23,7 @@ function connection()
 
 function findAll(){
     $db = connection(); //objet BDD 
-    $sql = "select name, description, price from product"; // la requete SQL
+    $sql = "select * from product"; // la requete SQL
     $request = $db->prepare($sql); // on indique quelle requete on va envoyer
     $request->execute(); // on envoie la resquete 
 
@@ -50,7 +50,6 @@ function  findOneById($id) {
     $request->execute(array('id'=>$id));
 
     $products = $request->fetchAll();
-    // var_dump($products);
 
     foreach($products as $product){
         ?>

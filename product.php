@@ -2,4 +2,4 @@
 
 require("db-functions.php");
 
-findOneById(2);
+findOneById(1);
