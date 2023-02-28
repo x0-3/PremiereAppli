@@ -32,9 +32,9 @@ function findAll(){
     foreach($products as $product){
         ?>
         <br>
-        <a href="product.php"><?php echo $product['name']; ?></a>
+        <a href="product.php" class="fw-bold"><?php echo $product['name']; ?></a>
         <p><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
-        <p><?php echo $product['price']; ?> €</p>
+        <p class="fw-bold"><?php echo $product['price']; ?> €</p>
         <a href="#">Ajouter au panier</a>
         <br>
     
@@ -55,9 +55,9 @@ function  findOneById($id) {
         ?>
         <br>
         <a href="index.php">Retour</a>
-        <p><?php echo $product['name']; ?></p>
+        <p class="h3"><?php echo $product['name']; ?></p>
         <p><?php echo $product['description']; ?></p>
-        <p><?php echo $product['price']; ?> €</p>
+        <p class="fw-bold"><?php echo $product['price']; ?> €</p>
         <a href="#">Ajouter au panier</a>
         <br>
     
