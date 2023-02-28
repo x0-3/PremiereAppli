@@ -1,5 +1,9 @@
 <?php
+
 session_start(); // start a session
+
+require("db-functions.php");
+
 
 //si il ya des action dans l'url
 if(isset($_GET['action'])){
@@ -7,33 +11,66 @@ if(isset($_GET['action'])){
     // switch entre differente action posible
     switch($_GET['action']){
         case "ajouter":
+
+            // FIXME:
+            $id = $_GET['id'];
+            findAll();
+
+            $product = [
+                "name" => $name,
+                "price" => $price,
+                "qtt" => $qtt,
+                "total" => $price*$qtt
+            ];
+
+            // display the data stored in the array
+            foreach($products as $product){
+                ?>
+                <br>
+                <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
+                <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
+                <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+                <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
+                
+                <br>
+            
+                <?php
+            }
+
+            $_SESSION['products'][] = $product;
+
+
             // see if the POST request existe
             // it is also used to limit the access of traitement.php
-            if(isset($_POST['submit'])){
 
-                // filter the value that is received
-                // counter the risk for errors or hacks 
-                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-                $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-                $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+            // if(isset($_POST['submit'])){
 
-                // see if the filters works
-                // those variables are supposed to hold the values that was submited or erased in the form 
-                if($name && $price && $qtt){
+            //     // filter the value that is received
+            //     // counter the risk for errors or hacks 
 
-                    // store the data in session by adding it in an array
-                    $product = [
-                        "name" => $name,
-                        "price" => $price,
-                        "qtt" => $qtt,
-                        "total" => $price*$qtt
-                    ];
+            //     $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            //     $descr = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            //     $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            //     $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
-                    // save this product that has been created in session
-                    $_SESSION['products'][] = $product;
-                }
-            }
-            break;
+            //     // see if the filters works
+            //     // those variables are supposed to hold the values that was submited or erased in the form 
+            //     if($name && $price && $descr && $qtt){
+            //         // store the data in session by adding it in an array
+            //         $product = [
+            //             "name" => $name,
+            //             "price" => $price,
+            //             "description" => $descr,
+            //             "qtt" => $qtt,
+            //             "total" => $price*$qtt
+            //         ];
+                // insertProduct($name,$descr,$price);
+                // header("Location:product.php");
+            //     }
+
+            // }
+        
+        break;
 
         // delete all the products in the table 
         case"viderPanier":

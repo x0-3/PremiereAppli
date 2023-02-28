@@ -3,66 +3,75 @@
 function connection()
 {
     $options = [
-        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // précise le type d'erreur que PDO renverra en cas de requête invalide.
-        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC, // PDO renverra les données sous forme de tableau associatif (FETCH_ASSOC)
-        \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' // force la prise en charge de l'UTF-8
+        \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION, // tells us the type of error in case of an invalide query
+        \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC, // PDO send the value in a associative array (FETCH_ASSOC)
+        \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' // forces UTF-8 support
     ];
 
 
 
     try {
-        // On se connecte à MySQL
+        // connection to MySQL 
         $mysqlClient = new PDO('mysql:host=localhost;dbname=store;charset=utf8', 'root', '', $options);
     } catch (Exception $e) {
-        // En cas d'erreur, on affiche un message et on arrête tout
+        // in case of an error, we show a message and stop the program
         die('Erreur : ' . $e->getMessage());
     }
 
     return $mysqlClient;
 }
 
+// shows all the products stored in the database
 function findAll(){
-    $db = connection(); //objet BDD 
-    $sql = "select * from product"; // la requete SQL
-    $request = $db->prepare($sql); // on indique quelle requete on va envoyer
-    $request->execute(); // on envoie la resquete 
+    $db = connection(); //object DB 
+    $sql = "select id,name,description,price from product"; // sql query
+    $request = $db->prepare($sql); // we prepare the query that we want to send
+    $request->execute(); // we execute the query 
 
     // retourne un tableau contenant toutes les lignes de la base de donnée
-    $products = $request->fetchAll(); // on stock le resultat dans un variable, on précise all s'il y a plusieurs résultats attendus
-
-    foreach($products as $product){
-        ?>
-        <br>
-        <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
-        <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
-        <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-        <a href="#" class="m-2">Ajouter au panier</a>
-        <br>
+    $products = $request->fetchAll(); // the result is stored in a variable 
     
-        <?php
-    }
+    return $products;
 }
 
-
+// shows only the product previously chosen by it's id 
 function  findOneById($id) {
-    $db = connection();
-    $sql = "select * from product where id = :id";
+    $db = connection(); // connect to the database
+    $sql = "select * from product where id = :id"; // query
     $request = $db->prepare($sql);
     $request->execute(array(':id'=> $id));
 
     // récupère la ligne suivante de la base de donnée
+    $product = $request->fetch(); //retieve only one columns that is present in the array
+
+    ?>
+    <br>
+    <a href="index.php" type="button" class="btn btn-dark m-2">Retour</a>
+    <p class="h3 m-2"><?php echo $product['name']; ?></p>
+    <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
+    <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+    <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
+    <br>
+
+    <?php
+}
+
+function  insertProduct($name,$descr,$price) {
+    $db = connection(); // connect to the database
+    $sql = "INSERT INTO product (name, description, price) VALUES(:name, :description, :price) "; // query
+    $request = $db->prepare($sql);
+    $request ->execute([$name, $descr, $price]);
     $product = $request->fetch();
 
     ?>
     <br>
-    <a href="index.php" class="m-2">Retour</a>
+    <a href="index.php" type="button" class="btn btn-dark m-2">Retour</a>
     <p class="h3 m-2"><?php echo $product['name']; ?></p>
     <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
     <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-    <a href="#" class="m-2">Ajouter au panier</a>
+    <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
     <br>
 
     <?php
-
-
 }
+

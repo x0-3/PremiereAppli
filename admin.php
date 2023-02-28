@@ -19,6 +19,10 @@
                 <input type="text" name="name">
             </label>
         </p>
+        <label for="descr">
+            Product description :
+            <textarea name="descr" id="descr" cols="30" rows="5"></textarea>
+        </label>
         <p>
             <label>
                 Prix du produit :
