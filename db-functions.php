@@ -27,7 +27,8 @@ function findAll(){
     $request = $db->prepare($sql); // on indique quelle requete on va envoyer
     $request->execute(); // on envoie la resquete 
 
-    $products = $request->fetchAll(); // on stock le resultat dans un variable, on précise all s'il y a plueisurs résultats attendus
+    // retourne un tableau contenant toutes les lignes de la base de donnée
+    $products = $request->fetchAll(); // on stock le resultat dans un variable, on précise all s'il y a plusieurs résultats attendus
 
     foreach($products as $product){
         ?>
@@ -49,6 +50,7 @@ function  findOneById($id) {
     $request = $db->prepare($sql);
     $request->execute(array(':id'=> $id));
 
+    // récupère la ligne suivante de la base de donnée
     $product = $request->fetch();
 
     ?>
