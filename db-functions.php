@@ -44,16 +44,8 @@ function  findOneById($id) {
     // récupère la ligne suivante de la base de donnée
     $product = $request->fetch(); //retieve only one columns that is present in the array
 
-    ?>
-    <br>
-    <a href="index.php" type="button" class="btn btn-dark m-2">Retour</a>
-    <p class="h3 m-2"><?php echo $product['name']; ?></p>
-    <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
-    <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-    <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
-    <br>
+    return $product;
 
-    <?php
 }
 
 function  insertProduct($name,$descr,$price) {
@@ -63,15 +55,5 @@ function  insertProduct($name,$descr,$price) {
     $request ->execute([$name, $descr, $price]);
     $product = $request->fetch();
 
-    ?>
-    <br>
-    <a href="index.php" type="button" class="btn btn-dark m-2">Retour</a>
-    <p class="h3 m-2"><?php echo $product['name']; ?></p>
-    <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
-    <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-    <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
-    <br>
-
-    <?php
 }
 

@@ -12,19 +12,19 @@ if(isset($_GET['action'])){
     switch($_GET['action']){
         case "ajouter":
 
-            // FIXME:
             $id = $_GET['id'];
-            findAll();
+            $product=findOneById($id);
 
             $product = [
-                "name" => $name,
-                "price" => $price,
+                "name" => $product['name'],
+                "price" => $product['price'],
                 "qtt" => $qtt,
-                "total" => $price*$qtt
+                "total" => $product['price']*$qtt
             ];
 
+            // FIXME: problem qtt
             // display the data stored in the array
-            foreach($products as $product){
+            
                 ?>
                 <br>
                 <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
@@ -35,8 +35,7 @@ if(isset($_GET['action'])){
                 <br>
             
                 <?php
-            }
-
+            
             $_SESSION['products'][] = $product;
 
 

@@ -14,7 +14,7 @@
     <?php
     require("db-functions.php");
 
-    findAll();
+    $products=findAll();
 
     // FIXME:
     // display the data stored in the array

@@ -14,9 +14,18 @@
     
     $id=$_GET['id'];
 
-    findOneById($id);
+    $product = findOneById($id);
 
-    
+    ?>
+    <br>
+    <a href="index.php" type="button" class="btn btn-dark m-2">Retour</a>
+    <p class="h3 m-2"><?php echo $product['name']; ?></p>
+    <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
+    <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+    <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
+    <br>
+
+    <?php
 
     ?>    
 </body>
