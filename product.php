@@ -11,17 +11,11 @@
     <?php
 
     require("db-functions.php");
+    
+    $id=$_GET['id'];
 
-    findOneById(1);
-    // findOneById(2);
-    // findOneById(3);
-    // findOneById(4);
-    // findOneById(5);
-    // findOneById(6);
-    // findOneById(7);
-    // findOneById(8);
-    // findOneById(9);
-    // findOneById(10);
+    findOneById($id);
+
     ?>    
 </body>
 </html>

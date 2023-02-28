@@ -32,36 +32,35 @@ function findAll(){
     foreach($products as $product){
         ?>
         <br>
-        <a href="product.php" class="fw-bold"><?php echo $product['name']; ?></a>
-        <p><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
-        <p class="fw-bold"><?php echo $product['price']; ?> €</p>
-        <a href="#">Ajouter au panier</a>
+        <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
+        <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
+        <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+        <a href="#" class="m-2">Ajouter au panier</a>
         <br>
     
         <?php
     }
 }
 
+
 function  findOneById($id) {
     $db = connection();
-
     $sql = "select * from product where id = :id";
     $request = $db->prepare($sql);
-    $request->execute(array('id'=>$id));
+    $request->execute(array(':id'=> $id));
 
-    $products = $request->fetchAll();
+    $product = $request->fetch();
 
-    foreach($products as $product){
-        ?>
-        <br>
-        <a href="index.php">Retour</a>
-        <p class="h3"><?php echo $product['name']; ?></p>
-        <p><?php echo $product['description']; ?></p>
-        <p class="fw-bold"><?php echo $product['price']; ?> €</p>
-        <a href="#">Ajouter au panier</a>
-        <br>
-    
-        <?php
-    }
+    ?>
+    <br>
+    <a href="index.php" class="m-2">Retour</a>
+    <p class="h3 m-2"><?php echo $product['name']; ?></p>
+    <p class="m-2 text-muted"><?php echo $product['description']; ?></p>
+    <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+    <a href="#" class="m-2">Ajouter au panier</a>
+    <br>
+
+    <?php
+
 
 }
