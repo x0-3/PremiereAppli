@@ -13,7 +13,7 @@
 
     <h1>Ajouter un produit</h1>
 
-    <form action="traitement.php" method="POST">
+    <form action="traitement.php?action=addproduct" method="POST">
         <p>
             <label>Nom du produit :
                 <input type="text" name="name">

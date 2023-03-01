@@ -43,7 +43,6 @@ function  findOneById($id) {
 
     // récupère la ligne suivante de la base de donnée
     $product = $request->fetch(); //retieve only one columns that is present in the array
-
     return $product;
 
 }
@@ -57,9 +56,8 @@ function  insertProduct($name,$descr,$price) {
         ':description' => $descr,
         ':price' => $price,
     ]);
-    $product = $request->fetch();
 
-    return $product;
+    return $db->lastInsertId(); //get the last inserted id 
 
 }
 

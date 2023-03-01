@@ -41,13 +41,14 @@ session_start();// start session
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    // "<td>".$product['price']."</td>",
                     "<td>".$product['qtt']."</td>",
                     "<td>".number_format($product['total'], 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td><a href = 'traitement.php?action=enleverProduit&id=$index'><button>-</button></a></td>",// decrease product by one
                     "<td><a href = 'traitement.php?action=augmenterProduit&id=$index'><button>+</button></a></td>",// increase product by one
                     "<td><a href = 'traitement.php?action=supprimerProduit&id=$index'><button>suprimer</button></a></td>",// clear button
                 "</tr>";
+            
+            var_dump($product['qtt']);    
             $totalGeneral+=$product['total'];// add product total to the general total
         }
         

@@ -22,7 +22,7 @@ if(isset($_GET['action'])){
                 "total" => $product['price']*$qtt
             ];
 
-            // FIXME: problem qtt
+            // FIXME: problem qtt shows NULL result
             // display the data stored in the array
             
             ?>
@@ -30,14 +30,13 @@ if(isset($_GET['action'])){
             <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
             <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
             <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-            <p class="fw-bold m-2"><?php echo $qtt; ?> €</p>
+            <p class="fw-bold m-2"><?php echo $qtt; ?></p>
             <p class="fw-bold m-2"><?php echo $product['price']*$qtt; ?> €</p>
             <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
             
             <br>
         
-            <?php
-            
+            <?php  
             $_SESSION['products'][] = $product;
         
         break;
@@ -86,26 +85,28 @@ if(isset($_GET['action'])){
             }
         break;
 
+        case"addproduct":
+            // add data from the form to database 
+            if (isset ($_POST['submit'])){
+
+                $name = $_POST['name'];
+                $descr = $_POST['description'];
+                $price = $_POST['price'];
+
+                $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $descr = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+                $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+                $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
+
+
+                $newId=insertProduct($name,$descr,$price); 
+            }
+            header("location:product.php?id=$newId");
+        break;
     }
 }
 
-// add data from the form to database 
-if (isset ($_POST['submit'])){
 
-    $name = $_POST['name'];
-    $descr = $_POST['description'];
-    $price = $_POST['price'];
-
-    $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $descr = filter_input(INPUT_POST, "description", FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
-    $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
-
-
-    insertProduct($name,$descr,$price);  
-    
-    header("location:product.php?id".$_SESSION['id']);
-}
 
 // redirect user to this URL
 header("Location:index.php");

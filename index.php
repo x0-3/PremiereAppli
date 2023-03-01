@@ -10,6 +10,7 @@
 </head>
 <body>
     <a href='recap.php' type="button" class="btn btn-dark m-2">panier</a>
+    <a href='admin.php' type="button" class="btn btn-dark m-2">admin</a>
 
     <?php
     require("db-functions.php");
