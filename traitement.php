@@ -109,5 +109,5 @@ if(isset($_GET['action'])){
 
 
 // redirect user to this URL
-header("Location:index.php");
+// header("Location:index.php");
 
