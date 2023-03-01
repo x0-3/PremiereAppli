@@ -1,8 +1,8 @@
 <?php
 
+// FIXME: 
 function productQtt(){
 
-    $qtt =1;
-
+    $qtt =0;
     return $qtt;
 }
