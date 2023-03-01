@@ -1,7 +1,7 @@
 <?php
 
 session_start(); // start a session
-
+include 'functions.php';
 require("db-functions.php");
 
 
@@ -18,28 +18,24 @@ if(isset($_GET['action'])){
             $product = [
                 "name" => $product['name'],
                 "price" => $product['price'],
-                "qtt" => $qtt,
-                "total" => $product['price']*$qtt
+                "qtt"=>productQtt()
             ];
 
-            // FIXME: problem qtt shows NULL result
             // display the data stored in the array
-            
             ?>
             <br>
             <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
             <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
             <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-            <p class="fw-bold m-2"><?php echo $qtt; ?></p>
-            <p class="fw-bold m-2"><?php echo $product['price']*$qtt; ?> €</p>
             <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
-            
             <br>
-        
             <?php  
             $_SESSION['products'][] = $product;
+
+            header("Location:index.php");
         
         break;
+
 
         // delete all the products in the table 
         case"viderPanier":
@@ -47,6 +43,7 @@ if(isset($_GET['action'])){
             header("Location:index.php");
             die();// stop reading the script native function
         break;
+        
         
         // delete one product from the table
         case"supprimerProduit":
@@ -59,15 +56,19 @@ if(isset($_GET['action'])){
             }
         break;
 
+
+        // FIXME: when button pressed than increment of one and decrease one call variable stores in function 
         // increase quantity
         case"augmenterProduit":
             // if I have the keyword 'id in the url and taht I have the product id then retrieve the quantity that is present in the id with a $_GET
             if(isset($_GET['id']) &&($_SESSION['products'][$_GET['id']])){
+                
                $_SESSION['products'][$_GET['id']]['qtt']++;// increament the quantity that is in the id
-               header("Location:index.php");// redirect user to this URL
+               header("Location:recap.php");// redirect user to this URL
                 die();
             }
         break;
+
 
         // decrease quantity
         case"enleverProduit":
@@ -85,8 +86,10 @@ if(isset($_GET['action'])){
             }
         break;
 
+
+        // add data from the form to database 
         case"addproduct":
-            // add data from the form to database 
+            
             if (isset ($_POST['submit'])){
 
                 $name = $_POST['name'];
@@ -102,6 +105,7 @@ if(isset($_GET['action'])){
                 $newId=insertProduct($name,$descr,$price); 
             }
             header("location:product.php?id=$newId");
+            die();
         break;
     }
 }
