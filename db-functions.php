@@ -50,10 +50,16 @@ function  findOneById($id) {
 
 function  insertProduct($name,$descr,$price) {
     $db = connection(); // connect to the database
-    $sql = "INSERT INTO product (name, description, price) VALUES(:name, :description, :price) "; // query
+    $sql = "INSERT INTO product (name, description, price) VALUES(:name, :description, :price)"; // query
     $request = $db->prepare($sql);
-    $request ->execute([$name, $descr, $price]);
+    $request ->execute([
+        ':name' => $name,
+        ':description' => $descr,
+        ':price' => $price,
+    ]);
     $product = $request->fetch();
+
+    return $product;
 
 }
 

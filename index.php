@@ -14,9 +14,9 @@
     <?php
     require("db-functions.php");
 
+
     $products=findAll();
 
-    // FIXME:
     // display the data stored in the array
     foreach($products as $product){
         ?>

@@ -13,15 +13,15 @@
 
     <h1>Ajouter un produit</h1>
 
-    <form action="traitement.php?action=ajouter" method="post">
+    <form action="traitement.php" method="POST">
         <p>
             <label>Nom du produit :
                 <input type="text" name="name">
             </label>
         </p>
-        <label for="descr">
+        <label for="description">
             Product description :
-            <textarea name="descr" id="descr" cols="30" rows="5"></textarea>
+            <textarea name="description" id="description" cols="30" rows="5"></textarea>
         </label>
         <p>
             <label>
