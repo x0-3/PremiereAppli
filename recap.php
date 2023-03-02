@@ -36,27 +36,33 @@ require 'functions.php';
         // execute product by product the same instructions that will show inside the table
         $totalGeneral = 0;
         foreach($_SESSION['products'] as $index => $product){
+            productQtt();
 
-            $total = productQtt()*$product['price'];
-            // write products info inside a table
-            
+            if(isset ($product['qtt'])){
+                $total = $product['qtt']*$product['price'];
+                $product['qtt'];
+            }else{
+                $product['qtt']= 0 ;
+                $total= 0;
+            }
+
             echo "<tr>",
                     "<td>".$index."</td>",
                     "<td>".$product['name']."</td>",
                     "<td>".number_format($product['price'], 2, ",", "&nbsp;")."&nbsp;€</td>",
-                    // "<td>".$product['qtt']."</td>",
-                    "<td>".productQtt()."</td>",
+                    "<td>".$product['qtt']."</td>",
+                    // "<td>".productQtt()."</td>",
                     "<td>".number_format($total, 2, ",", "&nbsp;")."&nbsp;€</td>",
                     "<td><a href = 'traitement.php?action=enleverProduit&id=$index'><button>-</button></a></td>",// decrease product by one
                     "<td><a href = 'traitement.php?action=augmenterProduit&id=$index'><button>+</button></a></td>",// increase product by one
                     "<td><a href = 'traitement.php?action=supprimerProduit&id=$index'><button>suprimer</button></a></td>",// clear button
                 "</tr>";
-
             $totalGeneral+=$total;// add product total to the general total
+            
         }
         
         echo "<tr>",
-                "<td colspan=4>Total général : </td>",
+                "<td colspan=4>Total général :</td>",
                 "<td><strong>".number_format($totalGeneral,2, ",", "&nbsp")."&nbsp;€</strong></td>",
             "</tr>",
             "</tbody>",

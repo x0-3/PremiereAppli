@@ -12,24 +12,29 @@ if(isset($_GET['action'])){
     switch($_GET['action']){
         case "ajouter":
 
-            $id = $_GET['id'];
-            $product=findOneById($id);
+            if (isset ($_GET['id'])){
+                $id = $_GET['id'];
 
-            $product = [
-                "name" => $product['name'],
-                "price" => $product['price'],
-            ];
+                $id = filter_var($id, FILTER_VALIDATE_INT);
 
-            // display the data stored in the array
-            ?>
-            <br>
-            <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
-            <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
-            <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
-            <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
-            <br>
-            <?php  
-            $_SESSION['products'][] = $product;
+                $product=findOneById($id);
+
+                $product = [
+                    "name" => $product['name'],
+                    "price" => $product['price'],
+                ];
+
+                // display the data stored in the array
+                ?>
+                <br>
+                <a href="product.php?id=<?=$product['id']?>" class="h3 m-2"><?php echo $product['name']; ?></a>
+                <p class="m-2 text-muted"><?php echo mb_strimwidth($product['description'], 0, 50 , '...'); ?></p>
+                <p class="fw-bold m-2"><?php echo $product['price']; ?> €</p>
+                <a href="traitement.php?action=ajouter&id=<?=$product['id']?>" type="button" class="btn btn-dark m-2">Ajouter au panier</a>
+                <br>
+                <?php  
+                $_SESSION['products'][] = $product;
+            }
 
             header("Location:index.php");
         
@@ -56,12 +61,11 @@ if(isset($_GET['action'])){
         break;
 
 
-        // FIXME: when button pressed than increment of one and decrease one call variable stores in function 
         // increase quantity
         case"augmenterProduit":
             // if I have the keyword 'id in the url and taht I have the product id then retrieve the quantity that is present in the id with a $_GET
             if(isset($_GET['id']) &&($_SESSION['products'][$_GET['id']])){
-
+                productQtt();
                $_SESSION['products'][$_GET['id']]['qtt']++;// increament the quantity that is in the id
                header("Location:recap.php");// redirect user to this URL
                 die();
@@ -73,8 +77,9 @@ if(isset($_GET['action'])){
         case"enleverProduit":
             if(isset($_GET['id']) && ($_SESSION['products'][$_GET['id']])){
                 // in order to get the quantity you need to write the path that allows to get to it 
+                productQtt();
                 $_SESSION['products'][$_GET['id']]['qtt']--;// retrieve the quantity that is in the id with a $_GET and decreament it
-                header("Location:index.php");// redirect user to this URL
+                header("Location:recap.php");// redirect user to this URL
 
                 // if quantity = 0 then delete the product
                 if($_SESSION['products'][$_GET['id']]['qtt'] == 0){
@@ -101,6 +106,10 @@ if(isset($_GET['action'])){
                 $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
 
 
+                // défintion faille XSS
+                // se sont des vulnérabilités par injection de code et d'injections SQL
+
+
                 $newId=insertProduct($name,$descr,$price); 
             }
             header("location:product.php?id=$newId");
@@ -109,8 +118,4 @@ if(isset($_GET['action'])){
     }
 }
 
-
-
-// redirect user to this URL
-// header("Location:index.php");
 

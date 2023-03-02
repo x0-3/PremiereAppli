@@ -25,8 +25,11 @@ function connection()
 function findAll(){
     $db = connection(); //object DB 
     $sql = "select id,name,description,price from product"; // sql query
-    $request = $db->prepare($sql); // we prepare the query that we want to send
-    $request->execute(); // we execute the query 
+    $request = $db->query($sql); // we prepare the query that we want to send
+    // we execute the query 
+
+    //    query est utiliser pour preparer et executer des requette sans paramettre
+
 
     // retourne un tableau contenant toutes les lignes de la base de donnée
     $products = $request->fetchAll(); // the result is stored in a variable 
@@ -40,6 +43,17 @@ function  findOneById($id) {
     $sql = "select * from product where id = :id"; // query
     $request = $db->prepare($sql);
     $request->execute(array(':id'=> $id));
+    // prepare et execute son utiliser si la requette doit etre executer plusieurs fois et si elle posséde des parametre
+
+
+    // définition de l'injection SQL et définition d'une requete préparée
+
+    // définition l'injection SQL
+    // de méthodes d'exploitation de faille de sécurité d'une application interagissant avec une base de données
+
+    // définition d'une requete préparée
+    // elle est utilisée pour exécuter la même requête plusieurs fois, avec une grande efficacité et protège des injections SQL
+
 
     // récupère la ligne suivante de la base de donnée
     $product = $request->fetch(); //retieve only one columns that is present in the array

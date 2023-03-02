@@ -1,34 +1,33 @@
 -- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.1.0.6537
+-- Hôte:                         127.0.0.1
+-- Version du serveur:           5.7.33 - MySQL Community Server (GPL)
+-- SE du serveur:                Win64
+-- HeidiSQL Version:             11.2.0.6213
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8 */;
 /*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
--- Dumping database structure for store
-CREATE DATABASE IF NOT EXISTS `store` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+-- Listage de la structure de la base pour store
+CREATE DATABASE IF NOT EXISTS `store` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
 USE `store`;
 
--- Dumping structure for table store.product
+-- Listage de la structure de la table store. product
 CREATE TABLE IF NOT EXISTS `product` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) DEFAULT NULL,
-  `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `description` text COLLATE utf8_bin NOT NULL,
   `price` float NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
--- Dumping data for table store.product: ~24 rows (approximately)
+-- Listage des données de la table store.product : ~24 rows (environ)
+/*!40000 ALTER TABLE `product` DISABLE KEYS */;
 INSERT INTO `product` (`id`, `name`, `description`, `price`) VALUES
 	(1, 'Pumpkin ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Pretium vulputate sapien nec sagittis aliquam malesuada. Nisl nunc mi ipsum faucibus vitae aliquet nec. Purus gravida quis blandit turpis cursus. Augue eget arcu dictum varius duis at consectetur lorem. Vestibulum morbi blandit cursus risus. Sagittis orci a scelerisque purus semper eget duis at. Odio euismod lacinia at quis risus sed vulputate odio ut. Et ultrices neque ornare aenean euismod elementum. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Lacinia quis vel eros donec ac odio tempor. Proin libero nunc consequat interdum. Non sodales neque sodales ut etiam sit. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Augue ut lectus arcu bibendum at varius. Sit amet luctus venenatis lectus.', 4.99),
 	(2, 'apple ', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Pretium vulputate sapien nec sagittis aliquam malesuada. Nisl nunc mi ipsum faucibus vitae aliquet nec. Purus gravida quis blandit turpis cursus. Augue eget arcu dictum varius duis at consectetur lorem. Vestibulum morbi blandit cursus risus. Sagittis orci a scelerisque purus semper eget duis at. Odio euismod lacinia at quis risus sed vulputate odio ut. Et ultrices neque ornare aenean euismod elementum. Nibh cras pulvinar mattis nunc sed blandit libero volutpat sed. Lacinia quis vel eros donec ac odio tempor. Proin libero nunc consequat interdum. Non sodales neque sodales ut etiam sit. Ultrices neque ornare aenean euismod elementum nisi quis eleifend. Augue ut lectus arcu bibendum at varius. Sit amet luctus venenatis lectus.', 6.99),
@@ -54,8 +53,8 @@ INSERT INTO `product` (`id`, `name`, `description`, `price`) VALUES
 	(71, 'mur', 'sdtgfhjkl', 3),
 	(72, 'raisin', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat mauris nunc congue nisi. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Morbi tristique senectus et netus et malesuada fames ac. Consequat interdum varius sit amet mattis. Tristique et egestas quis ipsum. Ut faucibus pulvinar elementum integer enim. Ut placerat orci nulla pellentesque. Platea dictumst vestibulum rhoncus est pellentesque elit. Leo duis ut diam quam nulla porttitor massa. Sapien faucibus et molestie ac feugiat sed.', 2.99),
 	(73, 'grapefruit', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Consequat mauris nunc congue nisi. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit duis. Ultrices mi tempus imperdiet nulla malesuada pellentesque. Morbi tristique senectus et netus et malesuada fames ac. Consequat interdum varius sit amet mattis. Tristique et egestas quis ipsum. Ut faucibus pulvinar elementum integer enim. Ut placerat orci nulla pellentesque. Platea dictumst vestibulum rhoncus est pellentesque elit. Leo duis ut diam quam nulla porttitor massa. Sapien faucibus et molestie ac feugiat sed.', 3.99);
+/*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,8 +1,16 @@
 <?php
 
-// FIXME: 
 function productQtt(){
 
-    $qtt =0;
-    return $qtt;
+    $qtt=1;
+
+    $products = [
+        'qtt'=> $qtt,
+    ];
+
+    foreach($products as $product){
+        return $qtt;
+    }
+
+    return $product;
 }
