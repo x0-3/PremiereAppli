@@ -107,7 +107,20 @@ if(isset($_GET['action'])){
 
 
                 // défintion faille XSS
-                // se sont des vulnérabilités par injection de code et d'injections SQL
+                // est un type de faille de sécurité des sites web permettant d'injecter du contenu dans une page, provoquant ainsi des actions sur les navigateurs web visitant la page.
+                // les failles sont les recuperations de données sensibles tel que le numero de compte bancaire ou de mot de passe
+
+                //  les filter permettent de vérifier la conformité des données envoyées par rapport à ce qu’on attend.
+                // filter_list() Retourne une liste de tous les filtres supportés
+                // filter_id() Retourne l’identifiant d’un filtre nommé
+                // filter_input() Récupère une variable externe et la filtre
+                // filter_var() Filtre une variable avec un filtre spécifique
+                // filter_var_array() Récupère plusieurs variables et les filtre
+                // filter_input_array() Récupère plusieurs variables externes et les filtre
+                // filter_has_var() Vérifie si une variable d’un type spécifique existe
+
+                // TODO: definition 
+                // echapper une variable 
 
 
                 $newId=insertProduct($name,$descr,$price); 

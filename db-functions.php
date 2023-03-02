@@ -43,16 +43,19 @@ function  findOneById($id) {
     $sql = "select * from product where id = :id"; // query
     $request = $db->prepare($sql);
     $request->execute(array(':id'=> $id));
+    
     // prepare et execute son utiliser si la requette doit etre executer plusieurs fois et si elle posséde des parametre
+    // bindParam permet d'associer par référence les emplacements anonymes ou nommés de la requête aux variables passées en paramètres (les valeurs sont interdites). Elle retourne TRUE en cas de succès et FALSE en cas d'erreur. 
+    // binValue permet d'associer par valeur les emplacements anonymes ou nommés de la requête aux valeurs ou variables passées en paramètres. Elle retourne TRUE en cas de succès et FALSE en cas d'erreur. 
 
-
-    // définition de l'injection SQL et définition d'une requete préparée
 
     // définition l'injection SQL
-    // de méthodes d'exploitation de faille de sécurité d'une application interagissant avec une base de données
+    // de méthodes d'exploitation de faille de sécurité d'une application interagissant avec une base de données coté serveur
+    // peut être contre avec des requete preparer
 
     // définition d'une requete préparée
-    // elle est utilisée pour exécuter la même requête plusieurs fois, avec une grande efficacité et protège des injections SQL
+    // Une requête préparée ou requête paramétrable est utilisée pour exécuter la même requête plusieurs fois, avec une grande efficacité et protège des injections SQL. L'exécution d'une requête préparée se déroule en deux étapes : la préparation et l'exécution.
+    // execute() et prepare()
 
 
     // récupère la ligne suivante de la base de donnée
