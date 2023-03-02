@@ -107,10 +107,12 @@ if(isset($_GET['action'])){
 
 
                 // défintion faille XSS
-                // est un type de faille de sécurité des sites web permettant d'injecter du contenu dans une page, provoquant ainsi des actions sur les navigateurs web visitant la page.
+                // Une faille XSS (Cross-Site Scripting) est une vulnérabilité de sécurité dans une application Web qui permet à un attaquant d'injecter et d'exécuter du code malveillant (généralement du code JavaScript)
                 // les failles sont les recuperations de données sensibles tel que le numero de compte bancaire ou de mot de passe
+                // valider et d'encoder correctement toutes les entrées utilisateur, notamment les formulaires de saisie, les champs de recherche et les URL
 
-                //  les filter permettent de vérifier la conformité des données envoyées par rapport à ce qu’on attend.
+                // definition filter
+                //  est une fonction qui permet de valider et/ou de filtrer des données d'entrée. Elle est souvent utilisée pour nettoyer et valider les données reçues d'un utilisateur, telles que les données de formulaire, les paramètres d'URL ou les données de session.
                 // filter_list() Retourne une liste de tous les filtres supportés
                 // filter_id() Retourne l’identifiant d’un filtre nommé
                 // filter_input() Récupère une variable externe et la filtre
@@ -119,8 +121,10 @@ if(isset($_GET['action'])){
                 // filter_input_array() Récupère plusieurs variables externes et les filtre
                 // filter_has_var() Vérifie si une variable d’un type spécifique existe
 
-                // TODO: definition 
                 // echapper une variable 
+                // Pour échapper une variable SQL et éviter les attaques d'injection de SQL, il est recommandé d'utiliser des requêtes préparées avec des paramètres.
+                // ex : :nom 
+                // execute([$nom])
 
 
                 $newId=insertProduct($name,$descr,$price); 

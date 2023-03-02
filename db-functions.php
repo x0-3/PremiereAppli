@@ -28,8 +28,10 @@ function findAll(){
     $request = $db->query($sql); // we prepare the query that we want to send
     // we execute the query 
 
-    //    query est utiliser pour preparer et executer des requette sans paramettre
-
+    // definition query
+    // La méthode query est une méthode de l'objet PDO qui permet d'exécuter une requête SQL directement, sans préparation préalable ni utilisation de paramètres.
+    // a ne pas utiliser si la fonction possede des parametre
+     
 
     // retourne un tableau contenant toutes les lignes de la base de donnée
     $products = $request->fetchAll(); // the result is stored in a variable 
